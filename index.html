@@ -12,48 +12,56 @@
         background: #0d0d0d;
         color: #f2f2f2;
     }
+
     header {
         padding: 40px 20px;
         text-align: center;
         background: linear-gradient(to right, #000000, #0a2342);
     }
+
     .logo {
         font-size: 48px;
         font-weight: 800;
         letter-spacing: 4px;
     }
+
     .logo span {
         color: #1e90ff;
     }
+
     nav {
         text-align: center;
         margin-top: 20px;
     }
+
     nav a {
         color: #cfcfcf;
         text-decoration: none;
         margin: 0 15px;
         font-size: 18px;
     }
+
     nav a:hover {
         color: #1e90ff;
     }
 
     .hero {
-        padding: 80px 20px;
+        padding: 120px 20px;
         text-align: center;
-        background: url('YOUR-DRAWING-IMAGE-LINK-HERE') center/cover no-repeat;
+        background: url('https://raw.githubusercontent.com/eckoy16/team-ers-fitness/main/images/cover_background.png') center/cover no-repeat;
         color: white;
     }
+
     .hero h1 {
         font-size: 54px;
         text-shadow: 1px 1px 4px black;
     }
-    .hero {
-        padding: 80px 20px;
-        text-align: center;
-        background: url('https://raw.githubusercontent.com/eckoy16/team-ers-fitness/main/images/cover_background.png') center/cover no-repeat;
-        color: white;
+
+    .hero p {
+        font-size: 22px;
+        max-width: 700px;
+        margin: auto;
+        text-shadow: 1px 1px 2px black;
     }
 
     .cta-btn {
@@ -72,17 +80,20 @@
         max-width: 1000px;
         margin: auto;
     }
+
     .section h2 {
         text-align: center;
         margin-bottom: 40px;
         font-size: 36px;
     }
+
     .three-cols {
         display: flex;
         flex-wrap: wrap;
         gap: 25px;
         justify-content: center;
     }
+
     .card {
         background: #1a1a1a;
         padding: 25px;
@@ -90,6 +101,7 @@
         width: 280px;
         text-align: center;
     }
+
     .card h3 {
         color: #1e90ff;
     }
@@ -98,6 +110,7 @@
         background: #111;
         padding: 50px 20px;
     }
+
     .testimonial p {
         text-align: center;
         font-size: 20px;
@@ -110,6 +123,32 @@
         background: #000;
         color: #888;
     }
+
+    /* Booking Form Styling */
+    input, select, textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: 5px;
+        border: none;
+    }
+
+    form {
+        background: #1a1a1a;
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 500px;
+        margin: auto;
+    }
+
+    button {
+        padding: 12px 24px;
+        font-size: 18px;
+        border: none;
+        background: #1e90ff;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+    }
 </style>
 </head>
 
@@ -120,6 +159,7 @@
     <nav>
         <a href="#about">About</a>
         <a href="#programs">Programs</a>
+        <a href="#booking">Book Session</a>
         <a href="#contact">Contact</a>
     </nav>
 </header>
@@ -127,7 +167,7 @@
 <section class="hero">
     <h1>Transform Your Body. Transform Your Life.</h1>
     <p>Personalized fitness coaching designed to help you burn fat, build muscle, and stay consistent.</p>
-    <a href="#contact" class="cta-btn">Start Coaching</a>
+    <a href="#booking" class="cta-btn">Start Coaching</a>
 </section>
 
 <section id="about" class="section">
@@ -140,11 +180,10 @@
     <p>
         Whether you're balancing long shifts, managing stress, or starting from zero, we build realistic 
         and sustainable programs tailored to your goals. Together, we create habits that last, improve your 
-        strength and confidence, and help you become the best version of yourself—without sacrificing your work, 
+        strength and confidence, and help you become the best version of yourself without sacrificing your work, 
         your time, or your momentum.
     </p>
 </section>
-
 
 <section id="programs" class="section">
     <h2>Coaching Programs</h2>
@@ -167,9 +206,48 @@
     </div>
 </section>
 
-<section class="testimonial">
-    <h2>Client Feedback</h2>
-    <p>"I lost 18kg in 4 months with Team ERS coaching. Workouts are clear, simple, and powerful."</p>
+<section id="booking" class="section">
+    <h2>Book a Coaching Session</h2>
+    <p style="text-align:center; max-width:700px; margin:auto;">
+        Ready to start your fitness journey with Team ERS?  
+        Fill out the form below and we’ll contact you to finalize your session.
+    </p>
+
+    <form action="https://formsubmit.co/teamersfitness@gmail.com" method="POST">
+
+        <input type="hidden" name="_subject" value="New Session Booking Request">
+        <input type="hidden" name="_captcha" value="false">
+
+        <div style="margin-bottom:20px;">
+            <input type="text" name="name" placeholder="Full Name" required>
+        </div>
+
+        <div style="margin-bottom:20px;">
+            <input type="email" name="email" placeholder="Email Address" required>
+        </div>
+
+        <div style="margin-bottom:20px;">
+            <input type="text" name="phone" placeholder="Phone Number">
+        </div>
+
+        <div style="margin-bottom:20px;">
+            <select name="session_type" required>
+                <option value="">Select Session Type</option>
+                <option>Weight Loss Coaching</option>
+                <option>Muscle Building Program</option>
+                <option>Hybrid Coaching</option>
+                <option>Personalized Custom Plan</option>
+            </select>
+        </div>
+
+        <div style="margin-bottom:20px;">
+            <textarea name="message" placeholder="Your goals or notes..." rows="4"></textarea>
+        </div>
+
+        <div style="text-align:center;">
+            <button type="submit">Submit Booking</button>
+        </div>
+    </form>
 </section>
 
 <section id="contact" class="section">

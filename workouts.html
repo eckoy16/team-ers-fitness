@@ -6,84 +6,75 @@
 <title>Team ERS — Workouts</title>
 
 <style>
-:root{
+:root {
   --bg:#0d0d0d; --card:#1a1a1a; --muted:#cfcfcf; --accent:#1e90ff;
 }
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#f2f2f2;}
-header{padding:28px 20px;text-align:center;background:linear-gradient(to right,#000,#0a2342);}
-.logo{font-size:40px;font-weight:800;letter-spacing:4px}
-.logo span{color:var(--accent)}
-nav{margin-top:12px}
-nav a{color:var(--muted);text-decoration:none;margin:0 12px;font-size:16px}
-nav a:hover{color:var(--accent)}
+body { margin:0; font-family:Arial, Helvetica, sans-serif; background:var(--bg); color:#f2f2f2; }
+header {
+  padding:28px 20px; text-align:center;
+  background:linear-gradient(to right,#000,#0a2342);
+}
+.logo { font-size:40px; font-weight:800; letter-spacing:4px; }
+.logo span { color:var(--accent); }
+nav { margin-top:12px; }
+nav a { color:var(--muted); text-decoration:none; margin:0 12px; font-size:16px; }
+nav a:hover { color:var(--accent); }
 
-.container{max-width:1100px;margin:40px auto;padding:0 20px;}
+.container { max-width:1100px; margin:40px auto; padding:0 20px; }
 
-.controls{display:flex;flex-direction:column;gap:16px;margin-bottom:20px}
+.controls { display:flex; flex-direction:column; gap:16px; margin-bottom:20px; }
 
-.categories,.filters{
-  display:flex;gap:10px;flex-wrap:wrap;
+.categories, .filters { display:flex; gap:10px; flex-wrap:wrap; }
+
+.cat-btn, .filter-btn {
+  background:#222; border:1px solid #333; color:#ccc;
+  padding:8px 14px; border-radius:6px; cursor:pointer;
+}
+.cat-btn.active, .filter-btn.active {
+  background:var(--accent); border-color:var(--accent); color:#fff;
 }
 
-.cat-btn,.filter-btn{
-  background:#222;border:1px solid #333;color:#ccc;
-  padding:8px 14px;border-radius:6px;cursor:pointer;
+.search input {
+  padding:10px; border-radius:8px; border:none;
+  background:#111; color:#eee; width:260px;
 }
 
-.cat-btn.active,.filter-btn.active{
-  background:var(--accent);border-color:var(--accent);color:#fff;
+.grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:20px; margin-top:18px;
 }
 
-.search input{
-  padding:10px;border-radius:8px;border:none;background:#111;color:#eee;width:260px;
+.card {
+  background:var(--card); border-radius:10px;
+  padding:14px; display:flex; flex-direction:column;
 }
+.card img { width:100%; height:150px; object-fit:cover; border-radius:8px; }
+.card h3 { margin:12px 0 6px; font-size:20px; color:var(--accent); }
+.tag { font-size:13px; background:#111; padding:6px 8px; border-radius:6px; color:#cfcfcf; }
+.desc { flex:1; color:#d5d5d5; margin:10px 0; font-size:14px; }
 
-.grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;margin-top:18px;
+.btn { padding:10px 12px; border-radius:8px; border:none; cursor:pointer; }
+.btn.primary { background:var(--accent); color:#fff; }
+.btn.ghost { background:#2a2a2a; color:var(--muted); }
+
+.modal-backdrop {
+  position:fixed; inset:0; background:rgba(0,0,0,0.6);
+  display:none; align-items:center; justify-content:center;
+  padding:20px; z-index:50;
 }
-
-.card{
-  background:var(--card);border-radius:10px;padding:14px;display:flex;flex-direction:column;
+.modal {
+  background:#0f0f0f; border-radius:10px; max-width:720px;
+  width:100%; padding:20px;
 }
+.modal h3 { margin-top:0; color:var(--accent); }
+.exercise-list { margin:12px 0; padding-left:18px; color:#ddd; }
+.meta { font-size:13px; color:#bbb; margin-top:10px; }
 
-.card img{
-  width:100%;height:150px;object-fit:cover;border-radius:8px;
-}
+footer { text-align:center; padding:26px 10px; background:#000; color:#888; margin-top:36px; }
 
-.card h3{
-  margin:12px 0 6px;font-size:20px;color:var(--accent);
-}
-
-.tag{font-size:13px;background:#111;padding:6px 8px;border-radius:6px;color:#cfcfcf;display:inline-block}
-.desc{flex:1;color:#d5d5d5;margin:10px 0;font-size:14px}
-
-.actions{display:flex;gap:10px;align-items:center;margin-top:8px}
-
-.btn{
-  padding:10px 12px;border-radius:8px;border:none;cursor:pointer;
-}
-.btn.primary{background:var(--accent);color:#fff}
-.btn.ghost{background:#2a2a2a;color:var(--muted)}
-
-.modal-backdrop{
-  position:fixed;inset:0;background:rgba(0,0,0,0.6);
-  display:none;align-items:center;justify-content:center;padding:20px;z-index:50;
-}
-
-.modal{
-  background:#0f0f0f;border-radius:10px;max-width:720px;width:100%;
-  padding:20px;
-}
-
-.modal h3{margin-top:0;color:var(--accent)}
-.exercise-list{margin:12px 0;padding-left:18px;color:#ddd}
-.meta{font-size:13px;color:#bbb;margin-top:10px}
-
-footer{text-align:center;padding:26px 10px;background:#000;color:#888;margin-top:36px}
-
-@media(max-width:520px){
-  .card img{height:120px;}
-  .logo{font-size:28px}
+@media (max-width:520px) {
+  .card img { height:120px; }
+  .logo { font-size:28px; }
 }
 </style>
 </head>
@@ -104,13 +95,11 @@ footer{text-align:center;padding:26px 10px;background:#000;color:#888;margin-top
 <main class="container">
 
   <div class="controls">
-
     <div>
       <strong style="font-size:20px;color:#fff">Workout Library</strong>
       <div style="color:#bbb;font-size:13px">Choose a category or filter by level</div>
     </div>
 
-    <!-- CATEGORY TABS -->
     <div class="categories">
       <button class="cat-btn active" data-cat="all">All</button>
       <button class="cat-btn" data-cat="Home">Home Workout</button>
@@ -119,7 +108,6 @@ footer{text-align:center;padding:26px 10px;background:#000;color:#888;margin-top
       <button class="cat-btn" data-cat="Dumbbells">Dumbbells Workout</button>
     </div>
 
-    <!-- DIFFICULTY FILTERS -->
     <div class="filters">
       <button class="filter-btn active" data-filter="all">All Levels</button>
       <button class="filter-btn" data-filter="Beginner">Beginner</button>
@@ -127,7 +115,6 @@ footer{text-align:center;padding:26px 10px;background:#000;color:#888;margin-top
       <button class="filter-btn" data-filter="Advanced">Advanced</button>
     </div>
 
-    <!-- SEARCH -->
     <div class="search">
       <input id="searchInput" placeholder="Search workouts...">
     </div>
@@ -153,9 +140,7 @@ footer{text-align:center;padding:26px 10px;background:#000;color:#888;margin-top
   </div>
 </div>
 
-<footer>
-  Team ERS Fitness Coaching © 2025
-</footer>
+<footer>Team ERS Fitness Coaching © 2025</footer>
 
 <script>
 // WORKOUT DATABASE
@@ -183,7 +168,7 @@ const workouts = [
   title:"Pull Day Workout",
   difficulty:"Intermediate",
   category:["Gym"],
-  shortDesc:"Back and biceps workout for strength, thickness and posture improvement.",
+  shortDesc:"Back and biceps workout for strength and muscle density.",
   image:"images/pull.jpg",
   pdf:"pdfs/pull.pdf",
   duration:60,
@@ -201,7 +186,7 @@ const workouts = [
   title:"Leg Day Workout",
   difficulty:"Advanced",
   category:["Gym"],
-  shortDesc:"Lower-body strength routine: quads, hamstrings, and glutes.",
+  shortDesc:"Leg strength and hypertrophy routine targeting quads, glutes and hamstrings.",
   image:"images/legs.jpg",
   pdf:"pdfs/legs.pdf",
   duration:70,
@@ -210,7 +195,7 @@ const workouts = [
     "Back Squat — 5x5",
     "Romanian Deadlift — 4x6-8",
     "Leg Press — 4x10-12",
-    "Lunges — 3x12 each leg"
+    "Walking Lunges — 3x12 each leg"
   ]
 },
 {
@@ -228,7 +213,7 @@ const workouts = [
     "Push-ups — 3x12",
     "DB Row — 3x10",
     "DB RDL — 3x10",
-    "Plank — 3x45s"
+    "Plank — 3x45 seconds"
   ]
 },
 {
@@ -236,7 +221,7 @@ const workouts = [
   title:"Hybrid Coaching Program",
   difficulty:"Intermediate",
   category:["Gym","FatBurner"],
-  shortDesc:"Strength + conditioning split for recomposition goals.",
+  shortDesc:"A recomposition-focused routine combining strength and conditioning.",
   image:"images/hybrid.jpg",
   pdf:"pdfs/hybrid.pdf",
   duration:50,
@@ -256,19 +241,114 @@ const workouts = [
   image:"images/personalized.jpg",
   pdf:"pdfs/personalized.pdf",
   duration:0,
-  equipment:"Customized",
+  equipment:"Custom",
   exercises:[
     "Customized weekly plan",
     "Nutrition guidance",
     "Check-ins and adjustments",
     "Progress tracking"
   ]
+},
+
+/* 5-DAY HOME WORKOUT ROUTINE */
+{
+  id:"home_day1",
+  title:"Home Workout Day 1: Upper Body Strength",
+  difficulty:"Beginner",
+  category:["Home"],
+  shortDesc:"Beginner-friendly upper-body training using bodyweight.",
+  image:"images/home_day1.jpg",
+  pdf:"pdfs/home_day1.pdf",
+  duration:35,
+  equipment:"Bodyweight / Optional Dumbbells",
+  exercises:[
+    "Push-ups — 3x10-15",
+    "Incline Push-ups — 3x12",
+    "Pike Shoulder Press — 3x8-12",
+    "Triceps Dips — 3x12",
+    "Plank — 3x30s"
+  ]
+},
+{
+  id:"home_day2",
+  title:"Home Workout Day 2: Lower Body Power",
+  difficulty:"Beginner",
+  category:["Home","FatBurner"],
+  shortDesc:"Leg-focused home training to build strength and endurance.",
+  image:"images/home_day2.jpg",
+  pdf:"pdfs/home_day2.pdf",
+  duration:40,
+  equipment:"Bodyweight",
+  exercises:[
+    "Bodyweight Squats — 4x15",
+    "Reverse Lunges — 3x12 each leg",
+    "Glute Bridges — 3x20",
+    "Calf Raises — 3x20",
+    "Wall Sit — 3x30s"
+  ]
+},
+{
+  id:"home_day3",
+  title:"Home Workout Day 3: Core & Conditioning",
+  difficulty:"Intermediate",
+  category:["Home","FatBurner"],
+  shortDesc:"Core-intensive routine paired with fat-burning conditioning.",
+  image:"images/home_day3.jpg",
+  pdf:"pdfs/home_day3.pdf",
+  duration:30,
+  equipment:"Bodyweight",
+  exercises:[
+    "Mountain Climbers — 3x40s",
+    "Leg Raises — 3x12",
+    "Russian Twists — 3x30",
+    "Bicycle Crunch — 3x40s",
+    "Burpees — 3x10-15"
+  ]
+},
+{
+  id:"home_day4",
+  title:"Home Workout Day 4: Full Body Burn",
+  difficulty:"Intermediate",
+  category:["Home","FatBurner"],
+  shortDesc:"High-calorie-burning full-body workout with circuits.",
+  image:"images/home_day4.jpg",
+  pdf:"pdfs/home_day4.pdf",
+  duration:45,
+  equipment:"Bodyweight",
+  exercises:[
+    "Circuit x3:",
+    "Jumping Jacks — 45s",
+    "Push-ups — 12 reps",
+    "Bodyweight Squats — 20 reps",
+    "Plank — 45s",
+    "Mountain Climbers — 45s"
+  ]
+},
+{
+  id:"home_day5",
+  title:"Home Workout Day 5: Dumbbell Strength Day",
+  difficulty:"Intermediate",
+  category:["Home","Dumbbells"],
+  shortDesc:"Strength-focused dumbbell routine for full-body conditioning.",
+  image:"images/home_day5.jpg",
+  pdf:"pdfs/home_day5.pdf",
+  duration:40,
+  equipment:"Dumbbells",
+  exercises:[
+    "Goblet Squat — 4x12",
+    "DB Shoulder Press — 3x10",
+    "DB Row — 3x10 each side",
+    "DB RDL — 3x12",
+    "DB Curl to Press — 3x10"
+  ]
 }
 ];
 
+// ------------------------------------------
+// RENDERING
+// ------------------------------------------
 const grid=document.getElementById("grid");
 
-// Render function
 function createCard(w){
   const el=document.createElement("div");
   el.className="card";
@@ -300,7 +380,9 @@ function render(list){
 
 render(workouts);
 
-// Filtering
+// ------------------------------------------
+// FILTERS
+// ------------------------------------------
 function applyFilters(level, search, cat){
   let list=workouts.slice();
 
@@ -316,21 +398,21 @@ function applyFilters(level, search, cat){
   render(list);
 }
 
-// Difficulty filter
+// Difficulty
 document.querySelectorAll(".filter-btn").forEach(btn=>{
   btn.onclick=()=>{
     document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
     btn.classList.add("active");
 
     const level=btn.dataset.filter;
-    const search=document.getElementById("searchInput").value.toLowerCase();
     const cat=document.querySelector(".cat-btn.active").dataset.cat;
+    const search=document.getElementById("searchInput").value.toLowerCase();
 
-    applyFilters(level, search, cat);
+    applyFilters(level,search,cat);
   };
 });
 
-// Category filter
+// Category
 document.querySelectorAll(".cat-btn").forEach(btn=>{
   btn.onclick=()=>{
     document.querySelectorAll(".cat-btn").forEach(b=>b.classList.remove("active"));
@@ -340,7 +422,7 @@ document.querySelectorAll(".cat-btn").forEach(btn=>{
     const level=document.querySelector(".filter-btn.active").dataset.filter;
     const search=document.getElementById("searchInput").value.toLowerCase();
 
-    applyFilters(level, search, cat);
+    applyFilters(level,search,cat);
   };
 });
 
@@ -350,10 +432,12 @@ document.getElementById("searchInput").oninput=(e)=>{
   const level=document.querySelector(".filter-btn.active").dataset.filter;
   const cat=document.querySelector(".cat-btn.active").dataset.cat;
 
-  applyFilters(level, search, cat);
+  applyFilters(level,search,cat);
 };
 
-// Modal
+// ------------------------------------------
+// MODAL
+// ------------------------------------------
 const modalBackdrop=document.getElementById("modalBackdrop");
 const modalTitle=document.getElementById("modalTitle");
 const modalDesc=document.getElementById("modalDesc");
@@ -372,7 +456,8 @@ function openModal(id){
     li.textContent=ex;
     modalExercises.appendChild(li);
   });
-  modalMeta.textContent=`Difficulty: ${w.difficulty} | Duration: ${w.duration? w.duration+' min':'Custom'} | Equipment: ${w.equipment}`;
+  modalMeta.textContent=
+    `Difficulty: ${w.difficulty} | Duration: ${w.duration? w.duration+' min':'Custom'} | Equipment: ${w.equipment}`;
   modalPdf.href=w.pdf;
   modalBook.onclick=()=>location.href="index.html#booking";
 

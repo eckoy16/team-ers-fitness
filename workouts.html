@@ -2,55 +2,92 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Team ERS — Workouts</title>
+
 <style>
-  :root{
-    --bg:#0d0d0d; --card:#1a1a1a; --muted:#cfcfcf; --accent:#1e90ff;
-  }
-  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#f2f2f2;}
-  header{padding:28px 20px;text-align:center;background:linear-gradient(to right,#000,#0a2342);}
-  .logo{font-size:40px;font-weight:800;letter-spacing:4px}
-  .logo span{color:var(--accent)}
-  nav{margin-top:12px}
-  nav a{color:var(--muted);text-decoration:none;margin:0 12px;font-size:16px}
-  nav a:hover{color:var(--accent)}
+:root{
+  --bg:#0d0d0d; --card:#1a1a1a; --muted:#cfcfcf; --accent:#1e90ff;
+}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#f2f2f2;}
+header{padding:28px 20px;text-align:center;background:linear-gradient(to right,#000,#0a2342);}
+.logo{font-size:40px;font-weight:800;letter-spacing:4px}
+.logo span{color:var(--accent)}
+nav{margin-top:12px}
+nav a{color:var(--muted);text-decoration:none;margin:0 12px;font-size:16px}
+nav a:hover{color:var(--accent)}
 
-  .container{max-width:1100px;margin:40px auto;padding:0 20px;}
+.container{max-width:1100px;margin:40px auto;padding:0 20px;}
 
-  .controls{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-bottom:20px}
-  .filters{display:flex;gap:10px;flex-wrap:wrap}
-  .filters button{background:#222;border:1px solid #2a2a2a;color:var(--muted);padding:10px 14px;border-radius:8px;cursor:pointer}
-  .filters button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-  .search{min-width:220px}
-  .search input{padding:10px;border-radius:8px;border:none;background:#111;color:#eee;width:100%}
+.controls{display:flex;flex-direction:column;gap:16px;margin-bottom:20px}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;margin-top:18px}
-  .card{background:var(--card);border-radius:10px;padding:14px;overflow:hidden;display:flex;flex-direction:column}
-  .card img{width:100%;height:150px;object-fit:cover;border-radius:8px}
-  .card h3{margin:12px 0 6px;font-size:20px;color:var(--accent)}
-  .tag{font-size:13px;background:#111;padding:6px 8px;border-radius:6px;color:#cfcfcf;display:inline-block}
-  .desc{flex:1;color:#d5d5d5;margin:10px 0;font-size:14px}
-  .actions{display:flex;gap:10px;align-items:center;margin-top:8px}
-  .btn{padding:10px 12px;border-radius:8px;border:none;cursor:pointer}
-  .btn.primary{background:var(--accent);color:#fff}
-  .btn.ghost{background:#2a2a2a;color:var(--muted)}
+.categories,.filters{
+  display:flex;gap:10px;flex-wrap:wrap;
+}
 
-  /* modal */
-  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
-  .modal{background:#0f0f0f;border-radius:10px;max-width:720px;width:100%;padding:20px;box-shadow:0 6px 30px rgba(0,0,0,0.6)}
-  .modal h3{margin-top:0;color:var(--accent)}
-  .exercise-list{margin:12px 0;padding-left:18px;color:#ddd}
-  .meta{font-size:13px;color:#bbb;margin-top:10px}
+.cat-btn,.filter-btn{
+  background:#222;border:1px solid #333;color:#ccc;
+  padding:8px 14px;border-radius:6px;cursor:pointer;
+}
 
-  footer{text-align:center;padding:26px 10px;background:#000;color:#888;margin-top:36px}
+.cat-btn.active,.filter-btn.active{
+  background:var(--accent);border-color:var(--accent);color:#fff;
+}
 
-  @media (max-width:520px){
-    .card img{height:120px}
-    .logo{font-size:28px}
-  }
+.search input{
+  padding:10px;border-radius:8px;border:none;background:#111;color:#eee;width:260px;
+}
+
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;margin-top:18px;
+}
+
+.card{
+  background:var(--card);border-radius:10px;padding:14px;display:flex;flex-direction:column;
+}
+
+.card img{
+  width:100%;height:150px;object-fit:cover;border-radius:8px;
+}
+
+.card h3{
+  margin:12px 0 6px;font-size:20px;color:var(--accent);
+}
+
+.tag{font-size:13px;background:#111;padding:6px 8px;border-radius:6px;color:#cfcfcf;display:inline-block}
+.desc{flex:1;color:#d5d5d5;margin:10px 0;font-size:14px}
+
+.actions{display:flex;gap:10px;align-items:center;margin-top:8px}
+
+.btn{
+  padding:10px 12px;border-radius:8px;border:none;cursor:pointer;
+}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.ghost{background:#2a2a2a;color:var(--muted)}
+
+.modal-backdrop{
+  position:fixed;inset:0;background:rgba(0,0,0,0.6);
+  display:none;align-items:center;justify-content:center;padding:20px;z-index:50;
+}
+
+.modal{
+  background:#0f0f0f;border-radius:10px;max-width:720px;width:100%;
+  padding:20px;
+}
+
+.modal h3{margin-top:0;color:var(--accent)}
+.exercise-list{margin:12px 0;padding-left:18px;color:#ddd}
+.meta{font-size:13px;color:#bbb;margin-top:10px}
+
+footer{text-align:center;padding:26px 10px;background:#000;color:#888;margin-top:36px}
+
+@media(max-width:520px){
+  .card img{height:120px;}
+  .logo{font-size:28px}
+}
 </style>
 </head>
+
 <body>
 
 <header>
@@ -65,274 +102,286 @@
 </header>
 
 <main class="container">
+
   <div class="controls">
+
     <div>
-      <strong style="color:#fff;font-size:18px">Workout Library</strong>
-      <div style="color:#bbb;font-size:13px">Structured routines for all levels</div>
+      <strong style="font-size:20px;color:#fff">Workout Library</strong>
+      <div style="color:#bbb;font-size:13px">Choose a category or filter by level</div>
     </div>
 
-    <div style="display:flex;gap:12px;align-items:center">
-      <div class="filters" role="tablist" aria-label="filter difficulties">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="Beginner">Beginner</button>
-        <button class="filter-btn" data-filter="Intermediate">Intermediate</button>
-        <button class="filter-btn" data-filter="Advanced">Advanced</button>
-      </div>
+    <!-- CATEGORY TABS -->
+    <div class="categories">
+      <button class="cat-btn active" data-cat="all">All</button>
+      <button class="cat-btn" data-cat="Home">Home Workout</button>
+      <button class="cat-btn" data-cat="Gym">Gym Equipment</button>
+      <button class="cat-btn" data-cat="FatBurner">Fat Burner</button>
+      <button class="cat-btn" data-cat="Dumbbells">Dumbbells Workout</button>
+    </div>
 
-      <div class="search" style="width:260px">
-        <input id="searchInput" placeholder="Search workouts (e.g. Push, Legs)"/>
-      </div>
+    <!-- DIFFICULTY FILTERS -->
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All Levels</button>
+      <button class="filter-btn" data-filter="Beginner">Beginner</button>
+      <button class="filter-btn" data-filter="Intermediate">Intermediate</button>
+      <button class="filter-btn" data-filter="Advanced">Advanced</button>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search">
+      <input id="searchInput" placeholder="Search workouts...">
     </div>
   </div>
 
-  <div id="grid" class="grid" aria-live="polite">
-    <!-- cards injected here -->
-  </div>
+  <div id="grid" class="grid"></div>
+
 </main>
 
-<!-- modal -->
-<div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
-  <div class="modal" role="document">
+<!-- MODAL -->
+<div id="modalBackdrop" class="modal-backdrop">
+  <div class="modal">
     <button id="closeModal" style="float:right;background:#222;border:none;color:#ccc;padding:6px 10px;border-radius:6px;cursor:pointer">Close</button>
-    <h3 id="modalTitle">Workout Title</h3>
-    <div id="modalDesc" style="color:#ddd;margin-bottom:8px"></div>
-    <div style="font-weight:600;color:#fff">Exercises</div>
+    <h3 id="modalTitle"></h3>
+    <div id="modalDesc" style="color:#ddd;margin-bottom:10px"></div>
+    <div style="font-weight:600;margin-top:10px">Exercises:</div>
     <ol id="modalExercises" class="exercise-list"></ol>
-    <div class="meta" id="modalMeta"></div>
+    <div id="modalMeta" class="meta"></div>
     <div style="margin-top:14px;text-align:right">
-      <a id="modalPdf" class="btn primary" href="#" target="_blank" rel="noopener">Download PDF</a>
-      <button id="modalBook" class="btn ghost" style="margin-left:8px">Book This Program</button>
+      <a id="modalPdf" class="btn primary" target="_blank">Download PDF</a>
+      <button id="modalBook" class="btn ghost">Book This Program</button>
     </div>
   </div>
 </div>
 
-<footer>Team ERS Fitness Coaching © 2025</footer>
+<footer>
+  Team ERS Fitness Coaching © 2025
+</footer>
 
 <script>
-/* --- Workout "database" --- 
-   Edit / extend this array to add new workouts. 
-   Each object should have: id, title, difficulty, shortDesc, image (images/<file>), pdf (pdfs/<file>), exercises (array), duration (mins), equipment */
+// WORKOUT DATABASE
 const workouts = [
-  {
-    id: "push",
-    title: "Push Day Workout",
-    difficulty: "Intermediate",
-    shortDesc: "Chest, shoulders and triceps routine focused on strength + hypertrophy.",
-    image: "images/push.jpg",
-    pdf: "pdfs/push.pdf",
-    duration: 60,
-    equipment: "Dumbbells, Barbell, Bench",
-    exercises: [
-      "Barbell Bench Press — 4 sets x 6–8 reps",
-      "Incline Dumbbell Press — 3 sets x 8–10 reps",
-      "Standing Overhead Press — 4 sets x 6–8 reps",
-      "Dumbbell Lateral Raises — 3 sets x 12–15 reps",
-      "Tricep Rope Pushdown — 3 sets x 10–12 reps",
-      "Slow Negative Push-ups — 2 sets to failure"
-    ]
-  },
-  {
-    id: "pull",
-    title: "Pull Day Workout",
-    difficulty: "Intermediate",
-    shortDesc: "Back and biceps workout designed to build pulling strength and thickness.",
-    image: "images/pull.jpg",
-    pdf: "pdfs/pull.pdf",
-    duration: 60,
-    equipment: "Barbell, Dumbbells, Pull-up bar",
-    exercises: [
-      "Deadlift — 4 sets x 4–6 reps",
-      "Barbell Row — 4 sets x 6–8 reps",
-      "Pull-ups (assisted if needed) — 4 sets x 6–10 reps",
-      "Single-arm Dumbbell Row — 3 sets x 8–10 reps",
-      "EZ-bar Curl — 3 sets x 8–10 reps",
-      "Hammer Curl — 3 sets x 10–12 reps"
-    ]
-  },
-  {
-    id: "legs",
-    title: "Leg Day Workout",
-    difficulty: "Advanced",
-    shortDesc: "Lower-body strength and hypertrophy routine — quads, hamstrings and glutes.",
-    image: "images/legs.jpg",
-    pdf: "pdfs/legs.pdf",
-    duration: 70,
-    equipment: "Barbell, Leg press, Dumbbells",
-    exercises: [
-      "Back Squat — 5 sets x 5 reps",
-      "Romanian Deadlift — 4 sets x 6–8 reps",
-      "Leg Press — 4 sets x 8–12 reps",
-      "Walking Lunges — 3 sets x 12 steps each leg",
-      "Standing Calf Raise — 4 sets x 12–15 reps"
-    ]
-  },
-  {
-    id: "fullbody",
-    title: "Full Body Routine",
-    difficulty: "Beginner",
-    shortDesc: "Balanced compound movements — perfect for metabolic conditioning and fat loss.",
-    image: "images/fullbody.jpg",
-    pdf: "pdfs/fullbody.pdf",
-    duration: 45,
-    equipment: "Bodyweight, Dumbbells",
-    exercises: [
-      "Goblet Squat — 3 sets x 12 reps",
-      "Push-ups — 3 sets x 10–15 reps",
-      "Bent-over Dumbbell Row — 3 sets x 10 reps",
-      "Dumbbell Romanian Deadlift — 3 sets x 10 reps",
-      "Plank — 3 sets x 45–60 seconds"
-    ]
-  },
-  {
-    id: "hybrid",
-    title: "Hybrid Coaching Program",
-    difficulty: "Intermediate",
-    shortDesc: "A program to build muscle while reducing body fat — periodized strength + conditioning.",
-    image: "images/hybrid.jpg",
-    pdf: "pdfs/hybrid.pdf",
-    duration: 50,
-    equipment: "Mixed",
-    exercises: [
-      "Day A — Strength: Squat, Bench, Row variations",
-      "Day B — Hypertrophy: Higher volume upper/lower split",
-      "Day C — Conditioning: Sprints + circuits",
-      "Weekly progression and nutrition targets included"
-    ]
-  },
-  {
-    id: "personalized",
-    title: "Personalized Coaching",
-    difficulty: "Advanced",
-    shortDesc: "Fully tailored plans built around your lifestyle and goals — workouts, nutrition, and checkpoints.",
-    image: "images/personalized.jpg",
-    pdf: "pdfs/personalized.pdf",
-    duration: 0,
-    equipment: "Custom",
-    exercises: [
-      "Personal assessment and goal-setting",
-      "Individualized program design",
-      "Weekly coaching check-ins and adjustments",
-      "Nutrition plan and accountability"
-    ]
-  }
+{
+  id:"push",
+  title:"Push Day Workout",
+  difficulty:"Intermediate",
+  category:["Gym","Dumbbells"],
+  shortDesc:"Chest, shoulders and triceps routine focused on strength + hypertrophy.",
+  image:"images/push.jpg",
+  pdf:"pdfs/push.pdf",
+  duration:60,
+  equipment:"Barbell, Dumbbells, Bench",
+  exercises:[
+    "Barbell Bench Press — 4x6-8",
+    "Incline Dumbbell Press — 3x8-10",
+    "Overhead Press — 4x6-8",
+    "Lateral Raises — 3x12-15",
+    "Tricep Pushdowns — 3x10-12"
+  ]
+},
+{
+  id:"pull",
+  title:"Pull Day Workout",
+  difficulty:"Intermediate",
+  category:["Gym"],
+  shortDesc:"Back and biceps workout for strength, thickness and posture improvement.",
+  image:"images/pull.jpg",
+  pdf:"pdfs/pull.pdf",
+  duration:60,
+  equipment:"Barbell, Dumbbells",
+  exercises:[
+    "Deadlift — 4x4-6",
+    "Barbell Row — 4x6-8",
+    "Pull-ups — 4x6-10",
+    "Dumbbell Row — 3x8-10",
+    "Hammer Curl — 3x10-12"
+  ]
+},
+{
+  id:"legs",
+  title:"Leg Day Workout",
+  difficulty:"Advanced",
+  category:["Gym"],
+  shortDesc:"Lower-body strength routine: quads, hamstrings, and glutes.",
+  image:"images/legs.jpg",
+  pdf:"pdfs/legs.pdf",
+  duration:70,
+  equipment:"Barbell, Leg Press",
+  exercises:[
+    "Back Squat — 5x5",
+    "Romanian Deadlift — 4x6-8",
+    "Leg Press — 4x10-12",
+    "Lunges — 3x12 each leg"
+  ]
+},
+{
+  id:"fullbody",
+  title:"Full Body Home Routine",
+  difficulty:"Beginner",
+  category:["Home","FatBurner"],
+  shortDesc:"Simple and effective full-body session ideal for fat loss.",
+  image:"images/fullbody.jpg",
+  pdf:"pdfs/fullbody.pdf",
+  duration:45,
+  equipment:"Bodyweight / Dumbbells",
+  exercises:[
+    "Goblet Squat — 3x12",
+    "Push-ups — 3x12",
+    "DB Row — 3x10",
+    "DB RDL — 3x10",
+    "Plank — 3x45s"
+  ]
+},
+{
+  id:"hybrid",
+  title:"Hybrid Coaching Program",
+  difficulty:"Intermediate",
+  category:["Gym","FatBurner"],
+  shortDesc:"Strength + conditioning split for recomposition goals.",
+  image:"images/hybrid.jpg",
+  pdf:"pdfs/hybrid.pdf",
+  duration:50,
+  equipment:"Mixed equipment",
+  exercises:[
+    "Strength Day (Squat, Bench, Row)",
+    "Hypertrophy Day (Upper/Lower split)",
+    "Conditioning Day (circuits & sprints)"
+  ]
+},
+{
+  id:"personalized",
+  title:"Personalized Coaching",
+  difficulty:"Advanced",
+  category:["Home","Gym","Dumbbells"],
+  shortDesc:"A fully custom plan built around your goals, schedule and lifestyle.",
+  image:"images/personalized.jpg",
+  pdf:"pdfs/personalized.pdf",
+  duration:0,
+  equipment:"Customized",
+  exercises:[
+    "Customized weekly plan",
+    "Nutrition guidance",
+    "Check-ins and adjustments",
+    "Progress tracking"
+  ]
+}
 ];
 
-/* --- Utilities & rendering --- */
-const grid = document.getElementById('grid');
-const modalBackdrop = document.getElementById('modalBackdrop');
-const modalTitle = document.getElementById('modalTitle');
-const modalDesc = document.getElementById('modalDesc');
-const modalExercises = document.getElementById('modalExercises');
-const modalMeta = document.getElementById('modalMeta');
-const modalPdf = document.getElementById('modalPdf');
-const modalBook = document.getElementById('modalBook');
+const grid=document.getElementById("grid");
 
+// Render function
 function createCard(w){
-  const el = document.createElement('div');
-  el.className = 'card';
-  el.setAttribute('data-difficulty', w.difficulty);
-  el.innerHTML = `
-    <img src="${w.image}" alt="${w.title}">
+  const el=document.createElement("div");
+  el.className="card";
+  el.innerHTML=`
+    <img src="${w.image}">
     <div style="display:flex;justify-content:space-between;align-items:center">
       <h3>${w.title}</h3>
       <span class="tag">${w.difficulty}</span>
     </div>
     <div class="desc">${w.shortDesc}</div>
     <div style="display:flex;justify-content:space-between;align-items:center">
-      <div style="font-size:13px;color:#bbb">${w.duration ? w.duration + ' min' : ''}</div>
+      <div style="font-size:13px;color:#bbb">${w.duration? w.duration+" min":""}</div>
       <div class="actions">
-        <button class="btn ghost view-btn" data-id="${w.id}">View Details</button>
-        <a class="btn primary" href="${w.pdf}" target="_blank" rel="noopener">Download PDF</a>
+        <button class="btn ghost view-btn" data-id="${w.id}">View</button>
+        <a class="btn primary" href="${w.pdf}" target="_blank">PDF</a>
       </div>
-    </div>`;
+    </div>
+  `;
   return el;
 }
 
-function renderGrid(list){
-  grid.innerHTML = '';
-  if(!list.length){
-    grid.innerHTML = '<div style="color:#bbb;padding:20px">No workouts found.</div>';
-    return;
-  }
-  list.forEach(w => grid.appendChild(createCard(w)));
-  // attach view handlers
-  document.querySelectorAll('.view-btn').forEach(btn=>{
-    btn.addEventListener('click', e=>{
-      const id = e.currentTarget.dataset.id;
-      openModal(id);
-    });
+function render(list){
+  grid.innerHTML="";
+  list.forEach(w=>grid.appendChild(createCard(w)));
+  document.querySelectorAll(".view-btn").forEach(b=>{
+    b.onclick=()=>openModal(b.dataset.id);
   });
 }
 
-/* initial render */
-renderGrid(workouts);
+render(workouts);
 
-/* Filter handling */
-document.querySelectorAll('.filter-btn').forEach(b=>{
-  b.addEventListener('click', ()=>{
-    document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    const filter = b.dataset.filter;
-    const q = document.getElementById('searchInput').value.trim().toLowerCase();
-    applyFilters(filter, q);
-  });
-});
+// Filtering
+function applyFilters(level, search, cat){
+  let list=workouts.slice();
 
-/* Search handling */
-document.getElementById('searchInput').addEventListener('input', (e)=>{
-  const q = e.target.value.trim().toLowerCase();
-  const active = document.querySelector('.filter-btn.active').dataset.filter;
-  applyFilters(active, q);
-});
-
-function applyFilters(filter, query){
-  let list = workouts.slice();
-  if(filter && filter !== 'all'){
-    list = list.filter(w => w.difficulty === filter);
+  if(level!=="all") list=list.filter(w=>w.difficulty===level);
+  if(cat!=="all") list=list.filter(w=>w.category.includes(cat));
+  if(search){
+    list=list.filter(w=>
+      (w.title+" "+w.shortDesc+" "+w.exercises.join(" "))
+      .toLowerCase().includes(search)
+    );
   }
-  if(query){
-    list = list.filter(w => (w.title + ' ' + w.shortDesc + ' ' + (w.exercises||[]).join(' ')).toLowerCase().includes(query));
-  }
-  renderGrid(list);
+
+  render(list);
 }
 
-/* Modal behavior */
+// Difficulty filter
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const level=btn.dataset.filter;
+    const search=document.getElementById("searchInput").value.toLowerCase();
+    const cat=document.querySelector(".cat-btn.active").dataset.cat;
+
+    applyFilters(level, search, cat);
+  };
+});
+
+// Category filter
+document.querySelectorAll(".cat-btn").forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll(".cat-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const cat=btn.dataset.cat;
+    const level=document.querySelector(".filter-btn.active").dataset.filter;
+    const search=document.getElementById("searchInput").value.toLowerCase();
+
+    applyFilters(level, search, cat);
+  };
+});
+
+// Search
+document.getElementById("searchInput").oninput=(e)=>{
+  const search=e.target.value.toLowerCase();
+  const level=document.querySelector(".filter-btn.active").dataset.filter;
+  const cat=document.querySelector(".cat-btn.active").dataset.cat;
+
+  applyFilters(level, search, cat);
+};
+
+// Modal
+const modalBackdrop=document.getElementById("modalBackdrop");
+const modalTitle=document.getElementById("modalTitle");
+const modalDesc=document.getElementById("modalDesc");
+const modalExercises=document.getElementById("modalExercises");
+const modalMeta=document.getElementById("modalMeta");
+const modalPdf=document.getElementById("modalPdf");
+const modalBook=document.getElementById("modalBook");
+
 function openModal(id){
-  const w = workouts.find(x=>x.id===id);
-  if(!w) return;
-  modalTitle.textContent = w.title;
-  modalDesc.textContent = w.shortDesc;
-  modalExercises.innerHTML = '';
+  const w=workouts.find(x=>x.id===id);
+  modalTitle.textContent=w.title;
+  modalDesc.textContent=w.shortDesc;
+  modalExercises.innerHTML="";
   w.exercises.forEach(ex=>{
-    const li = document.createElement('li');
-    li.textContent = ex;
+    const li=document.createElement("li");
+    li.textContent=ex;
     modalExercises.appendChild(li);
   });
-  modalMeta.textContent = `Difficulty: ${w.difficulty} · Duration: ${w.duration ? w.duration + ' min' : 'Custom'} · Equipment: ${w.equipment || 'Various'}`;
-  modalPdf.href = w.pdf || '#';
-  modalBook.onclick = ()=> {
-    // scroll or open booking on index.html
-    location.href = 'index.html#booking';
-  };
-  modalBackdrop.style.display = 'flex';
-  modalBackdrop.setAttribute('aria-hidden','false');
-  document.body.style.overflow = 'hidden';
+  modalMeta.textContent=`Difficulty: ${w.difficulty} | Duration: ${w.duration? w.duration+' min':'Custom'} | Equipment: ${w.equipment}`;
+  modalPdf.href=w.pdf;
+  modalBook.onclick=()=>location.href="index.html#booking";
+
+  modalBackdrop.style.display="flex";
 }
 
-document.getElementById('closeModal').addEventListener('click', closeModal);
-modalBackdrop.addEventListener('click', (e)=>{
-  if(e.target === modalBackdrop) closeModal();
-});
-function closeModal(){
-  modalBackdrop.style.display = 'none';
-  modalBackdrop.setAttribute('aria-hidden','true');
-  document.body.style.overflow = '';
-}
-
-/* Accessibility: close modal on Esc */
-document.addEventListener('keydown', e=>{
-  if(e.key === 'Escape' && modalBackdrop.style.display === 'flex') closeModal();
-});
+document.getElementById("closeModal").onclick=()=>modalBackdrop.style.display="none";
+modalBackdrop.onclick=(e)=>{ if(e.target===modalBackdrop) modalBackdrop.style.display="none"; };
 </script>
+
 </body>
 </html>
